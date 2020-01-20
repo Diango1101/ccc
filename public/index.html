@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="viewport"
+            content="width=device-width,initial-scale=1.0,user-scalable=no"
+        />
+        <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+        <title>华侨城-荒岛求生</title>
+        <script src="common/weixin/jweixin-1.0.0.js"></script>
+        <script src="common/weixin/js.php"></script>
+    </head>
+    <body>
+        <noscript>
+            <strong
+                >We're sorry but adv doesn't work properly without JavaScript
+                enabled. Please enable it to continue.</strong
+            >
+        </noscript>
+
+        <div id="app"></div>
+        <!-- built files will be auto injected -->
+
+        <audio
+            id="bg-music"
+            style="display:none; height: 0"
+            preload="auto"
+            src="common/media/backgroundmusic.mp3"
+            loop="loop"
+        ></audio>
+        <script>
+            function musicInWeixinHandler() {
+                musicPlay(true)
+                document.addEventListener(
+                    'WeixinJSBridgeReady',
+                    function() {
+                        musicPlay(true)
+                    },
+                    false
+                )
+                document.removeEventListener(
+                    'DOMContentLoaded',
+                    musicInWeixinHandler
+                )
+            }
+            document.addEventListener('DOMContentLoaded', musicInWeixinHandler)
+
+            function musicPlay(isPlay) {
+                var media = document.getElementById('bg-music')
+                if (isPlay && media.paused) {
+                    media.play()
+                }
+                if (!isPlay && !media.paused) {
+                    media.pause()
+                }
+            }
+        </script>
+        <div style="display: none">
+            <script
+                type="text/javascript"
+                src="https://v1.cnzz.com/z_stat.php?id=1278081516&web_id=1278081516"
+            ></script>
+        </div>
+    </body>
+</html>
